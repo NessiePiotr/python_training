@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e5fc5b12-aeab-46cb-8111-3c4e4b4293eb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_add_address.py" afterPath="$PROJECT_DIR$/test_add_address.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,9 +20,11 @@
       <file leaf-file-name="test_add_group.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_add_group.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-957">
-              <caret line="2" column="13" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="136">
+              <caret line="29" column="59" lean-forward="false" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+              <folding>
+                <element signature="e#24#82#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -30,21 +32,31 @@
       <file leaf-file-name="group.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/group.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="28" lean-forward="true" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_add_address.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_add_address.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_add_address.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="136">
+              <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
               <folding>
                 <element signature="e#24#82#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="address_element.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/address_element.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -66,6 +78,7 @@
       <list>
         <option value="$PROJECT_DIR$/group.py" />
         <option value="$PROJECT_DIR$/test_add_group.py" />
+        <option value="$PROJECT_DIR$/address_element.py" />
         <option value="$PROJECT_DIR$/test_add_address.py" />
       </list>
     </option>
@@ -75,6 +88,9 @@
     <option name="y" value="-4" />
     <option name="width" value="1928" />
     <option name="height" value="1044" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -112,7 +128,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
-  <component name="RunManager" selected="Python tests.py.test in test_add_address and test_test_add_address">
+  <component name="RunManager" selected="Python tests.py.test in test_add_address.py">
     <configuration default="false" name="Unittests in test_add_group" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -374,9 +390,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.py.test in test_add_address and test_test_add_address" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test in test_add_address" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.py.test in test_add_address.py" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.py.test in test_add_address.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.py.test in test_add_address and test_test_add_address" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.py.test in test_add_address" />
         <item index="3" class="java.lang.String" itemvalue="Python tests.py.test in test_add_group.py" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_add_group" />
       </list>
@@ -396,34 +412,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_in_test_add_address - 2017.03.10 at 09h 21m 59s.xml">
-      <configuration name="py.test in test_add_address" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_add_address - 2017.03.10 at 09h 22m 31s.xml">
-      <configuration name="py.test in test_add_address" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_add_address - 2017.03.10 at 09h 23m 16s.xml">
-      <configuration name="py.test in test_add_address" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_add_address - 2017.03.10 at 09h 28m 58s.xml">
-      <configuration name="py.test in test_add_address" configurationId="tests" />
-    </history-entry>
-    <history-entry file="py_test_in_test_add_address - 2017.03.10 at 09h 30m 34s.xml">
-      <configuration name="py.test in test_add_address" configurationId="tests" />
-    </history-entry>
     <history-entry file="py_test_in_test_add_address - 2017.03.10 at 09h 33m 11s.xml">
       <configuration name="py.test in test_add_address" configurationId="tests" />
     </history-entry>
     <history-entry file="py_test_in_test_add_address_and_test_test_add_address - 2017.03.10 at 09h 34m 19s.xml">
       <configuration name="py.test in test_add_address and test_test_add_address" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_in_test_add_address_py - 2017.03.10 at 08h 47m 44s.xml">
+    <history-entry file="py_test_in_test_add_address_and_test_test_add_address - 2017.03.10 at 09h 43m 06s.xml">
+      <configuration name="py.test in test_add_address and test_test_add_address" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_add_address_and_test_test_add_address - 2017.03.10 at 09h 43m 20s.xml">
+      <configuration name="py.test in test_add_address and test_test_add_address" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_add_address_and_test_test_add_address - 2017.03.10 at 09h 44m 14s.xml">
+      <configuration name="py.test in test_add_address and test_test_add_address" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_add_address_and_test_test_add_address - 2017.03.10 at 09h 45m 43s.xml">
+      <configuration name="py.test in test_add_address and test_test_add_address" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_add_address_py - 2017.03.10 at 09h 48m 44s.xml">
       <configuration name="py.test in test_add_address.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_in_test_add_address_py - 2017.03.10 at 08h 55m 03s.xml">
+    <history-entry file="py_test_in_test_add_address_py - 2017.03.10 at 09h 52m 10s.xml">
       <configuration name="py.test in test_add_address.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="py_test_in_test_add_address_py - 2017.03.10 at 08h 55m 36s.xml">
+    <history-entry file="py_test_in_test_add_address_py - 2017.03.10 at 09h 56m 57s.xml">
+      <configuration name="py.test in test_add_address.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_add_address_py - 2017.03.10 at 10h 25m 18s.xml">
       <configuration name="py.test in test_add_address.py" configurationId="tests" />
     </history-entry>
   </component>
@@ -434,9 +450,10 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32383966" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24367088" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -445,7 +462,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -460,27 +476,37 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/group.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="28" lean-forward="true" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_add_group.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-957">
-          <caret line="2" column="13" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="136">
+          <caret line="29" column="59" lean-forward="false" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+          <folding>
+            <element signature="e#24#82#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test_add_address.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        <state relative-caret-position="136">
+          <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
           <folding>
             <element signature="e#24#82#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/address_element.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
