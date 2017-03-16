@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 import pytest
-from Address_appl import Address_appl
-from address_element import FullName
-from address_element import Birthday
-from address_element import Company
+
+from fixture.Address_appl import Address_appl
+from model.address_element import Birthday
+from model.address_element import Company
+from model.address_element import FullName
+
 
 @pytest.fixture
 def app(request):
