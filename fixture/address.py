@@ -11,14 +11,14 @@ class AddressHelper:
 
     def delete_first_address(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        self.go_home_page()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
 
     def add_edit_element(self, full_name, birthday, company):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        self.go_home_page()
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         self.fill_fields_value(full_name, birthday, company)
         wd.find_element_by_name("update").click()
@@ -55,5 +55,10 @@ class AddressHelper:
 
     def count(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        self.go_home_page()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def go_home_page(self):
+        wd = self.app.wd
+        if not (len(wd.find_elements_by_name("MainForm")) > 0):
+            wd.find_element_by_link_text("home").click()
