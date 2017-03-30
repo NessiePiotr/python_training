@@ -11,12 +11,14 @@ class AddressHelper:
 
     def delete_first_address(self):
         wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
 
     def add_edit_element(self, full_name, birthday, company):
         wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         self.fill_fields_value(full_name, birthday, company)
         wd.find_element_by_name("update").click()
