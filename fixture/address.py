@@ -1,3 +1,5 @@
+from model.address_element import FullName
+
 class AddressHelper:
 
     def __init__(self, app):
@@ -62,3 +64,17 @@ class AddressHelper:
         wd = self.app.wd
         if not (len(wd.find_elements_by_name("MainForm")) > 0):
             wd.find_element_by_link_text("home").click()
+
+    def get_address_list(self):
+        wd = self.app.wd
+        self.go_home_page()
+        address = []
+        for element in wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr[@name='entry']"):
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            cell = element.find_elements_by_tag_name("td")
+            text_LN = cell[1].text
+            text_FN = cell[2].text
+            address.append(FullName(first_name=text_FN, last_name=text_LN, id=id))
+        return address
+
+
