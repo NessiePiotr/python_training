@@ -10,6 +10,7 @@ class AddressHelper:
         wd.find_element_by_link_text("add new").click()
         self.fill_fields_value(full_name, birthday, company)
         self.app.submit_form()
+        self.address_cache = None
 
     def delete_first_address(self):
         wd = self.app.wd
@@ -17,6 +18,7 @@ class AddressHelper:
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
+        self.address_cache = None
 
     def add_edit_element(self, full_name, birthday, company):
         wd = self.app.wd
@@ -24,6 +26,7 @@ class AddressHelper:
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         self.fill_fields_value(full_name, birthday, company)
         wd.find_element_by_name("update").click()
+        self.address_cache = None
 
     def change_field_value(self, name, value):
         wd = self.app.wd
@@ -65,16 +68,19 @@ class AddressHelper:
         if not (len(wd.find_elements_by_name("MainForm")) > 0):
             wd.find_element_by_link_text("home").click()
 
+    address_cache = None
+
     def get_address_list(self):
-        wd = self.app.wd
-        self.go_home_page()
-        address = []
-        for element in wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr[@name='entry']"):
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            cell = element.find_elements_by_tag_name("td")
-            text_LN = cell[1].text
-            text_FN = cell[2].text
-            address.append(FullName(first_name=text_FN, last_name=text_LN, id=id))
-        return address
+        if self.address_cache is None:
+            wd = self.app.wd
+            self.go_home_page()
+            self.address_cache = []
+            for element in wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr[@name='entry']"):
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                cell = element.find_elements_by_tag_name("td")
+                text_LN = cell[1].text
+                text_FN = cell[2].text
+                self.address_cache.append(FullName(first_name=text_FN, last_name=text_LN, id=id))
+        return list(self.address_cache)
 
 
