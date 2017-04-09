@@ -11,8 +11,8 @@ def test_edit_address_1(app):
     fullname.id = old_address[0].id
     app.address.add_edit_element(fullname, Birthday(day=12, month=3, year="1992"),
                         Company(company_name="Change Company_N1", address="Spb, Change Street 10", home="111", phone="+79119119199", e_mail="mail_1@mail.su"))
+    assert len(old_address) == app.address.count()
     new_address = app.address.get_address_list()
-    assert len(old_address) == len(new_address)
     old_address[0] = fullname
     assert sorted(old_address, key=FullName.id_or_max) == sorted(new_address, key=FullName.id_or_max)
 
