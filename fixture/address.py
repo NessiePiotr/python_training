@@ -13,17 +13,24 @@ class AddressHelper:
         self.address_cache = None
 
     def delete_first_address(self):
+        self.delete_address_by_index(0)
+
+    def delete_address_by_index(self, index):
         wd = self.app.wd
         self.go_home_page()
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]")[index].click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
         self.address_cache = None
 
     def add_edit_element(self, full_name, birthday, company):
+        edit_element_by_index(0, full_name, birthday, company)
+
+    def edit_element_by_index(self, index, full_name, birthday, company):
         wd = self.app.wd
         self.go_home_page()
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        index = index + 2
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[%d]/td[8]/a/img" % index).click()
         self.fill_fields_value(full_name, birthday, company)
         wd.find_element_by_name("update").click()
         self.address_cache = None
