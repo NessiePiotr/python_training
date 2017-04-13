@@ -5,9 +5,10 @@ from model.address_element import FullName
 
 def test_add_address(app):
     old_address = app.address.get_address_list()
-    fullname = FullName(first_name="First_N1", middle_name="Middle_N1", last_name="Last_N1", nick_name="Nick_N1")
+    fullname = FullName(first_name="First_N1", middle_name="Middle_N1", last_name="Last_N1", nick_name="Nick_N1",
+                                homephone="1101010", mobilephone="+79119119191", workphone="1100000", secondaryphone="1100010")
     app.address.add_new_element(fullname, Birthday(day=10, month=2, year="1991"),
-                        Company(company_name="Company_N1", address="Spb, Street 10", home="110", phone="+79119119191", e_mail="mail_1@mail.ru"))
+                        Company(company_name="Company_N1", address="Spb, Street 10", e_mail="mail_1@mail.ru"))
     assert len(old_address) + 1 == app.address.count()
     new_address = app.address.get_address_list()
     old_address.append(fullname)
