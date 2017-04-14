@@ -1,4 +1,4 @@
-from model.address_element import FullName
+from model.address_element import Contact
 import re
 
 class AddressHelper:
@@ -41,22 +41,24 @@ class AddressHelper:
             wd.find_element_by_name(name).clear()
             wd.find_element_by_name(name).send_keys(value)
 
-    def fill_fields_value(self, full_name, birthday, company):
+    def fill_fields_value(self, contact, birthday, company):
         wd = self.app.wd
         # full name
-        self.change_field_value("firstname", full_name.first_name)
-        self.change_field_value("middlename", full_name.middle_name)
-        self.change_field_value("lastname", full_name.last_name)
-        self.change_field_value("nickname", full_name.nick_name)
+        self.change_field_value("firstname", contact.first_name)
+        self.change_field_value("middlename", contact.middle_name)
+        self.change_field_value("lastname", contact.last_name)
+        self.change_field_value("nickname", contact.nick_name)
         # company name and address
         self.change_field_value("company", company.company_name)
-        self.change_field_value("address", company.address)
+        self.change_field_value("address", contact.address)
         # phone and e-mail
-        self.change_field_value("home", full_name.homephone)
-        self.change_field_value("mobile", full_name.mobilephone)
-        self.change_field_value("work", full_name.workphone)
-        self.change_field_value("phone2", full_name.secondaryphone)
-        self.change_field_value("email", company.e_mail)
+        self.change_field_value("home", contact.homephone)
+        self.change_field_value("mobile", contact.mobilephone)
+        self.change_field_value("work", contact.workphone)
+        self.change_field_value("phone2", contact.secondaryphone)
+        self.change_field_value("email", contact.e_mail)
+        self.change_field_value("email", contact.e_mail2)
+        self.change_field_value("email", contact.e_mail3)
         # birthday
         if birthday.day is not None:
             if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[%d]" % birthday.day).is_selected():
@@ -88,10 +90,11 @@ class AddressHelper:
                 cell = element.find_elements_by_tag_name("td")
                 text_LN = cell[1].text
                 text_FN = cell[2].text
-                all_phones = cell[5].text.splitlines()
-                self.address_cache.append(FullName(first_name=text_FN, last_name=text_LN, id=id,
-                                                   homephone=all_phones[0], mobilephone=all_phones[1],
-                                                   workphone=all_phones[2], secondaryphone=all_phones[3]))
+                address = cell[3].text
+                all_e_mails = cell[4].text
+                all_phones = cell[5].text
+                self.address_cache.append(Contact(first_name=text_FN, last_name=text_LN, id=id, address=address,
+                                                  all_phones_from_home_page=all_phones, all_e_mails_from_home_page=all_e_mails))
         return list(self.address_cache)
 
     def open_contact_to_edit_by_index(self, index):
@@ -113,13 +116,18 @@ class AddressHelper:
         self.open_contact_to_edit_by_index(index)
         firstname = wd.find_element_by_name("firstname").get_attribute("value")
         lastname = wd.find_element_by_name("lastname").get_attribute("value")
+        address = wd.find_element_by_name("address").get_attribute("value")
         id = wd.find_element_by_name("id").get_attribute("value")
         homephone = wd.find_element_by_name("home").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
         mobilephone = wd.find_element_by_name("mobile").get_attribute("value")
         secondaryphone = wd.find_element_by_name("phone2").get_attribute("value")
-        return FullName(first_name=firstname, last_name=lastname, id=id,
-                         homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone)
+        e_mail = wd.find_element_by_name("email").get_attribute("value")
+        e_mail2 = wd.find_element_by_name("email2").get_attribute("value")
+        e_mail3 = wd.find_element_by_name("email3").get_attribute("value")
+        return Contact(first_name=firstname, last_name=lastname, id=id, address=address,
+                       homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone,
+                       e_mail=e_mail, e_mail2=e_mail2, e_mail3=e_mail3)
 
     def get_address_info_from_view_page(self, index):
         wd = self.app.wd
@@ -129,7 +137,7 @@ class AddressHelper:
         workphone = re.search("W: (.*)", text).group(1)
         mobilephone = re.search("M: (.*)", text).group(1)
         secondaryphone = re.search("P: (.*)", text).group(1)
-        return FullName(homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone)
+        return Contact(homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone)
 
 
 

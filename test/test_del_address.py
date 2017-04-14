@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from model.address_element import Birthday
 from model.address_element import Company
-from model.address_element import FullName
+from model.address_element import Contact
 from random import randrange
 
 
 def test_del_first_address(app):
     if app.address.count() == 0:
-        app.address.add_new_element(FullName(nick_name="Test"),Birthday(),Company())
+        app.address.add_new_element(Contact(nick_name="Test"),Birthday(),Company())
     old_address = app.address.get_address_list()
     index = randrange(len(old_address))
     app.address.delete_address_by_index(index)
