@@ -22,7 +22,7 @@ class Contact:
         self.all_e_mails_from_home_page = all_e_mails_from_home_page
 
     def __repr__(self):
-        return "%s:%s:%s" % (self.id, self.first_name, self.last_name)
+        return "%s:%s:%s:%s" % (self.id, self.first_name, self.last_name, self.address)
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id) and self.first_name == other.first_name and self.last_name == other.last_name
@@ -39,7 +39,6 @@ class Birthday:
         self.day = day
         self.month = month
         self.year = year
-
 
 class Company:
 
