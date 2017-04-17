@@ -5,6 +5,8 @@ class SessionHelper:
 
     def login(self, username, password):
         wd = self.app.wd
+        if password is None:
+            raise ValueError("Password have to be entered")
         self.app.open_home_page()
         wd.find_element_by_name("pass").click()
         wd.find_element_by_name("pass").clear()
