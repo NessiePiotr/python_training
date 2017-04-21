@@ -1,22 +1,26 @@
 import pytest
+import json
+import os.path
 from fixture.application import Application
 
 fixture = None
+target = None
 
 @pytest.fixture
 def app(request):
     global fixture
+    global target
     browser = request.config.getoption("--browser")
-    base_url = request.config.getoption("--baseUrl")
-    username = request.config.getoption("--login")
-    password = request.config.getoption("--password")
-    if fixture is None:
-        fixture = Application(browser=browser, base_url=base_url)
-        fixture.session.login(username=username, password=password)
-    else:
-        if not fixture.is_valid():
-                fixture = Application(browser=browser, base_url=base_url)
-    fixture.session.ensure_login(username=username, password=password)
+    if target is None:
+        path = request.config.getoption("--path")
+        if path is None:
+            path = os.path.dirname(os.path.abspath(__file__))
+        config_file = os.path.join(path, request.config.getoption("--target"))
+        with open(config_file) as f:
+            target = json.load(f)
+    if fixture is None or not fixture.is_valid():
+        fixture = Application(browser=browser, base_url=target['baseUrl'])
+    fixture.session.ensure_login(username=target['login'], password=target['password'])
     return fixture
 
 @pytest.fixture(scope="session", autouse=True)
@@ -29,5 +33,5 @@ def stop(request):
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="firefox")
-    parser.addoption("--baseUrl", action="store", default="http://localhost/addressbook/")
-    parser.addoption("--login", action="store", default="admin")
+    parser.addoption("--path", action="store")
+    parser.addoption("--target", action="store", default="target.json")
