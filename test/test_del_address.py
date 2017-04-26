@@ -2,16 +2,18 @@
 from model.address_element import Birthday
 from model.address_element import Company
 from model.address_element import Contact
-from random import randrange
+import random
 
 
-def test_del_first_address(app):
-    if app.address.count() == 0:
+def test_del_some_address(app, db, check_ui):
+    if len(db.get_address_list()) == 0:
         app.address.add_new_element(Contact(nick_name="Test"),Birthday(),Company())
-    old_address = app.address.get_address_list()
-    index = randrange(len(old_address))
-    app.address.delete_address_by_index(index)
-    assert len(old_address) - 1 == app.address.count()
-    new_address = app.address.get_address_list()
-    old_address[index:index+1] = []
+    old_address = db.get_address_list()
+    address = random.choice(old_address)
+    app.address.delete_address_by_id(address.id)
+    old_address.remove(address)
+    new_address = db.get_address_list()
     assert old_address == new_address
+    if check_ui:
+        db_list = map(app.address.clean, new_address)
+        assert sorted(db_list, key=Contact.id_or_max) == sorted(app.address.get_address_list(), key=Contact.id_or_max)

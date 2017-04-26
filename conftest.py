@@ -2,28 +2,48 @@ import pytest
 import json
 import os.path
 from fixture.application import Application
+from fixture.db import DbFixture
 import importlib
 import jsonpickle
 
 fixture = None
 target = None
 
+def load_config(file):
+    global target
+    if target is None:
+        with open(file) as f:
+            target = json.load(f)
+    return target
+
 @pytest.fixture
 def app(request):
     global fixture
-    global target
     browser = request.config.getoption("--browser")
-    if target is None:
-        path = request.config.getoption("--path")
-        if path is None:
-            path = os.path.dirname(os.path.abspath(__file__))
-        config_file = os.path.join(path, request.config.getoption("--target"))
-        with open(config_file) as f:
-            target = json.load(f)
+    path = request.config.getoption("--path")
+    if path is None:
+        path = os.path.dirname(os.path.abspath(__file__))
+    web_config = load_config(os.path.join(path, request.config.getoption("--target")))['web']
     if fixture is None or not fixture.is_valid():
-        fixture = Application(browser=browser, base_url=target['baseUrl'])
-    fixture.session.ensure_login(username=target['login'], password=target['password'])
+        fixture = Application(browser=browser, base_url=web_config['baseUrl'])
+    fixture.session.ensure_login(username=web_config['login'], password=web_config['password'])
     return fixture
+
+@pytest.fixture(scope="session")
+def db(request):
+    path = request.config.getoption("--path")
+    if path is None:
+        path = os.path.dirname(os.path.abspath(__file__))
+    db_config = load_config(os.path.join(path, request.config.getoption("--target")))['db']
+    dbfixture = DbFixture(host=db_config['host'], database=db_config['database'], user=db_config['user'], password=db_config['password'])
+    def fin():
+        dbfixture.destroy()
+    request.addfinalizer(fin)
+    return dbfixture
+
+@pytest.fixture
+def check_ui(request):
+    return request.config.getoption("--check_ui")
 
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
@@ -37,6 +57,7 @@ def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="firefox")
     parser.addoption("--path", action="store")
     parser.addoption("--target", action="store", default="target.json")
+    parser.addoption("--check_ui", action="store_true")
 
 def pytest_generate_tests(metafunc):
     for fixture in metafunc.fixturenames:

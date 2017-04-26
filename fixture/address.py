@@ -22,16 +22,35 @@ class AddressHelper:
         wd.find_elements_by_name("selected[]")[index].click()
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
+        self.go_home_page()
+        self.address_cache = None
+
+    def delete_address_by_id(self, id):
+        wd = self.app.wd
+        self.go_home_page()
+        wd.find_element_by_id(id).click()
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+        wd.switch_to_alert().accept()
+        self.go_home_page()
         self.address_cache = None
 
     def add_edit_element(self, full_name, birthday, company):
-        edit_element_by_index(0, full_name, birthday, company)
+        self.edit_element_by_index(0, full_name, birthday, company)
 
     def edit_element_by_index(self, index, full_name, birthday, company):
         wd = self.app.wd
         self.open_contact_to_edit_by_index(index)
         self.fill_fields_value(full_name, birthday, company)
         wd.find_element_by_name("update").click()
+        self.go_home_page()
+        self.address_cache = None
+
+    def edit_element_by_id(self, id, full_name, birthday, company):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_id(id)
+        self.fill_fields_value(full_name, birthday, company)
+        wd.find_element_by_name("update").click()
+        self.go_home_page()
         self.address_cache = None
 
     def change_field_value(self, name, value):
@@ -104,6 +123,16 @@ class AddressHelper:
         cell = row.find_elements_by_tag_name("td")[7]
         cell.find_element_by_tag_name("a").click()
 
+    def open_contact_to_edit_by_id(self, id):
+        wd = self.app.wd
+        self.go_home_page()
+        for element in wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr[@name='entry']"):
+            element_id = element.find_element_by_name("selected[]").get_attribute("value")
+            if element_id == id:
+                cell = element.find_elements_by_tag_name("td")[7]
+                cell.find_element_by_tag_name("a").click()
+                return
+
     def open_contact_view_by_index(self,index):
         wd = self.app.wd
         self.go_home_page()
@@ -138,6 +167,10 @@ class AddressHelper:
         mobilephone = re.search("M: (.*)", text).group(1)
         secondaryphone = re.search("P: (.*)", text).group(1)
         return Contact(homephone=homephone, mobilephone=mobilephone, workphone=workphone, secondaryphone=secondaryphone)
+
+    def clean(self, contact):
+        return Contact(id=contact.id, first_name=contact.first_name.strip(), last_name=contact.last_name.strip())
+
 
 
 
