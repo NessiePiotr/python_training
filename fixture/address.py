@@ -116,6 +116,26 @@ class AddressHelper:
                                                   all_phones_from_home_page=all_phones, all_e_mails_from_home_page=all_e_mails))
         return list(self.address_cache)
 
+    def get_address_list_by_id(self, id):
+        if self.address_cache is None:
+            wd = self.app.wd
+            self.go_home_page()
+            self.address_cache = []
+            for element in wd.find_elements_by_xpath("//table[@id='maintable']/tbody/tr[@name='entry']"):
+                element_id = element.find_element_by_name("selected[]").get_attribute("value")
+                if element_id == id:
+                    cell = element.find_elements_by_tag_name("td")
+                    text_LN = cell[1].text
+                    text_FN = cell[2].text
+                    address = cell[3].text
+                    all_e_mails = cell[4].text
+                    all_phones = cell[5].text
+                    self.address_cache.append(Contact(first_name=text_FN, last_name=text_LN, id=id, address=address,
+                                                  all_phones_from_home_page=all_phones, all_e_mails_from_home_page=all_e_mails))
+                    return list(self.address_cache)
+
+
+
     def open_contact_to_edit_by_index(self, index):
         wd = self.app.wd
         self.go_home_page()
