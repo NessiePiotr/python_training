@@ -36,11 +36,9 @@ class ORMFixture:
             return Contact(id=str(contact.id), first_name=contact.first_name, last_name=contact.last_name)
         return list(map(convert, contacts))
 
-    @db_session
     def get_group_list(self):
         return self.conver_groups_to_model((select (g for g in ORMFixture.ORMGroup)))
 
-    @db_session
     def get_address_list(self):
         return self.conver_contacts_to_model((select (c for c in ORMFixture.ORMContact if c.deprecated is None)))
 

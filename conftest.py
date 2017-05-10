@@ -41,6 +41,18 @@ def db(request):
     request.addfinalizer(fin)
     return dbfixture
 
+@pytest.fixture(scope="session")
+def orm(request):
+    path = request.config.getoption("--path")
+    if path is None:
+        path = os.path.dirname(os.path.abspath(__file__))
+    db_config = load_config(os.path.join(path, request.config.getoption("--target")))['db']
+    dbfixture = DbFixture(host=db_config['host'], database=db_config['database'], user=db_config['user'], password=db_config['password'])
+    def fin():
+        dbfixture.destroy()
+    request.addfinalizer(fin)
+    return dbfixture
+
 @pytest.fixture
 def check_ui(request):
     return request.config.getoption("--check_ui")
