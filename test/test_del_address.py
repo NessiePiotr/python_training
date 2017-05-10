@@ -3,9 +3,11 @@ from model.address_element import Birthday
 from model.address_element import Company
 from model.address_element import Contact
 import random
+from fixture.orm import ORMFixture
 
+db = ORMFixture(host="127.0.0.1", database="addressbook", user="root", password="")
 
-def test_del_some_address(app, db, check_ui):
+def test_del_some_address(app, check_ui):
     if len(db.get_address_list()) == 0:
         app.address.add_new_element(Contact(nick_name="Test"),Birthday(),Company())
     old_address = db.get_address_list()
